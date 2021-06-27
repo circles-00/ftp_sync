@@ -7,5 +7,5 @@ Usage: `python3 ftp_sync.py`
 
 All you need to do is change line 10, 11, 12, 13 (you need to fill these variables with your own ftp information) and lines 21 and 22(to set local and remote folder for synchronization).
 
-I hope this will be of some sort of help to you.
+I hope this will be some sort of help to you.
 Enjoy.
