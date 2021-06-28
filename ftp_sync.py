@@ -37,23 +37,24 @@ def upload_song(path):
     files = os.listdir(path)
 
     for f in files:
+        f_title = f.title().split(".")[0]
         if os.path.isfile(path + r'\{}'.format(f)):
             if f not in ftp.nlst():
                 fh = open(f, 'rb')
-                print("----> Now uploading: " + f.title())
+                print("----> Now uploading: " + f_title)
                 ftp.storbinary('STOR ' + f, fh, 262144)
-                summary.write("----> " + f.title() + "\n")
+                summary.write("----> " + f_title + "\n")
                 fh.close()
             else:
-                print("----> Song " + f.title() + " already synced")
-                summary.write("----> " + f.title() + "\n")
+                print("----> Song " + f_title + " already synced")
+                summary.write("----> " + f_title + "\n")
 
         elif os.path.isdir(path + r'\{}'.format(f)):
             if f not in ftp.nlst():
                 ftp.mkd(f)
             ftp.cwd(f)
-            print("\n->Now uploading folder: " + f.title())
-            summary.write("-> " + f.title() + "\n")
+            print("\n->Now uploading folder: " + f_title)
+            summary.write("-> " + f_title + "\n")
             upload_song(path + r'\{}'.format(f))
     ftp.cwd('..')
     os.chdir('..')
